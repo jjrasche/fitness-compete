@@ -7,12 +7,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: '<your-key>',
-    authDomain: '<your-project-authdomain>',
-    databaseURL: '<your-database-URL>',
-    projectId: '<your-project-id>',
-    storageBucket: '<your-storage-bucket>',
-    messagingSenderId: '<your-messaging-sender-id>'
+    apiKey: "AIzaSyAkhQlU93MMlQHDJRDmkLKFldzQTmsxi6g",
+    authDomain: "fitness-compete.firebaseapp.com",
+    databaseURL: "https://fitness-compete.firebaseio.com",
+    projectId: "fitness-compete",
+    storageBucket: "fitness-compete.appspot.com",
+    messagingSenderId: "1019320043055"
   }
 };
 
