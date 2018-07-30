@@ -1,8 +1,13 @@
-export interface Authenticate {
-  username: string;
-  password: string;
-}
 
-export interface User {
-  name: string;
+export class User{
+  public email: string;
+  public name: string;
+
+  constructor(firebaseUser: firebase.auth.UserCredential = null) {
+    if (firebaseUser) {
+      this.email = firebaseUser.user.email;
+      this.name = firebaseUser.user.displayName;
+
+    }
+  }
 }

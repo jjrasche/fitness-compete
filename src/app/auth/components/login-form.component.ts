@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
-import { Authenticate } from "../models/user";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Authenticate } from '../models/authenticate';
 
 @Component({
-  selector: "bc-login-form",
+  selector: 'fc-login-form',
   template: `
     <mat-card>
       <mat-card-title>Login</mat-card-title>
@@ -11,7 +11,7 @@ import { Authenticate } from "../models/user";
         <form [formGroup]="form" (ngSubmit)="submit()">
           <p>
             <mat-form-field>
-              <input type="text" matInput placeholder="Username" formControlName="username">
+              <input type="text" matInput placeholder="Email" formControlName="email">
             </mat-form-field>
           </p>
 
@@ -26,7 +26,8 @@ import { Authenticate } from "../models/user";
           </p>
 
           <p class="loginButtons">
-            <button type="submit" mat-button>Login</button>
+            <button type="submit" (click)="submit('signUp')" mat-button>SignUp</button>
+            <button type="submit" (click)="submit('login')" mat-button>Login</button>
           </p>
 
         </form>
@@ -82,17 +83,17 @@ export class LoginFormComponent implements OnInit {
   @Output() submitted = new EventEmitter<Authenticate>();
 
   form: FormGroup = new FormGroup({
-    username: new FormControl(""),
-    password: new FormControl(""),
+    email: new FormControl("jimjrasche@gmail.com"),
+    password: new FormControl("Gonavy123FB"),
   });
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  submit() {
+  submit(action: string) {
     if (this.form.valid) {
-      this.submitted.emit(this.form.value);
+      this.submitted.emit({ ...this.form.value, "action": action });
     }
   }
 }

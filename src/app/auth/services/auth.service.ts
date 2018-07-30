@@ -1,25 +1,30 @@
 import { Injectable } from "@angular/core";
-import { Observable, of, throwError } from "rxjs";
 
-import { Authenticate, User } from "../models/user";
+import { Observable } from "rxjs";
+import { AngularFireAuth } from "angularfire2/auth";
+
+import { Authenticate } from "../models/authenticate";
 
 @Injectable()
 export class AuthService {
-  constructor() {}
+  user: Observable<firebase.User>;
 
-  login({ username, password }: Authenticate): Observable<User> {
-    /**
-     * Simulate a failed login to display the error
-     * message for the login form.
-     */
-    if (username !== "test") {
-      return throwError("Invalid username or password");
-    }
+  constructor(
+    // public db: AngularFireDatabase, 
+    public afAuth: AngularFireAuth) {
+    this.user = afAuth.authState;
 
-    return of({ name: "User" });
+  }
+
+  signup(auth: Authenticate): Promise<firebase.auth.UserCredential> {
+    return this.afAuth.auth.createUserWithEmailAndPassword(auth.email, auth.password);
+  }
+
+  login(auth: Authenticate): Promise<firebase.auth.UserCredential> {
+    return this.afAuth.auth.signInWithEmailAndPassword(auth.email, auth.password);
   }
 
   logout() {
-    return of(true);
+    this.afAuth.auth.signOut();
   }
 }

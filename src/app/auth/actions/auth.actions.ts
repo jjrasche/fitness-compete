@@ -1,38 +1,60 @@
 import { Action } from "@ngrx/store";
-import { User, Authenticate } from "../models/user";
+import { User } from "../models/user";
+import { Authenticate } from "../models/authenticate";
 
-export enum AuthActionTypes {
+export enum AuthActions {
   Login = "[Auth] Login",
   Logout = "[Auth] Logout",
   LoginSuccess = "[Auth] Login Success",
   LoginFailure = "[Auth] Login Failure",
   LoginRedirect = "[Auth] Login Redirect",
+  Signup = "[Auth] Signup",
+  SignupSuccess = "[Auth] Signup Success",
+  SignupFailure = "[Auth] Signup Failure",
 }
 
 export class Login implements Action {
-  readonly type = AuthActionTypes.Login;
+  readonly type = AuthActions.Login;
 
-  constructor(public payload: Authenticate) {}
+  constructor(public payload: Authenticate) { }
 }
 
 export class LoginSuccess implements Action {
-  readonly type = AuthActionTypes.LoginSuccess;
+  readonly type = AuthActions.LoginSuccess;
 
-  constructor(public payload: { user: User }) {}
+  constructor(public payload: User) { }
 }
 
 export class LoginFailure implements Action {
-  readonly type = AuthActionTypes.LoginFailure;
+  readonly type = AuthActions.LoginFailure;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export class LoginRedirect implements Action {
-  readonly type = AuthActionTypes.LoginRedirect;
+  readonly type = AuthActions.LoginRedirect;
 }
 
 export class Logout implements Action {
-  readonly type = AuthActionTypes.Logout;
+  readonly type = AuthActions.Logout;
+}
+
+export class Signup implements Action {
+  readonly type = AuthActions.Signup;
+
+  constructor(public payload: Authenticate) { }
+}
+
+export class SignupSuccess implements Action {
+  readonly type = AuthActions.SignupSuccess;
+
+  constructor(public payload: User) { }
+}
+
+export class SignupFailure implements Action {
+  readonly type = AuthActions.SignupFailure;
+
+  constructor(public payload: any) { }
 }
 
 export type AuthActionsUnion =
@@ -40,4 +62,7 @@ export type AuthActionsUnion =
   | LoginSuccess
   | LoginFailure
   | LoginRedirect
-  | Logout;
+  | Logout
+  | Signup
+  | SignupSuccess
+  | SignupFailure;

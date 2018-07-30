@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login Page should compile 1`] = `
-<bc-login-page
+<fc-login-page
   error$={[Function Store]}
   pending$={[Function Store]}
   store={[Function Store]}
 >
-  <bc-login-form
+  <fc-login-form
     _nghost-c0=""
     ng-reflect-pending="false"
   >
@@ -206,6 +206,6 @@ exports[`Login Page should compile 1`] = `
         </form>
       </mat-card-content>
     </mat-card>
-  </bc-login-form>
-</bc-login-page>
+  </fc-login-form>
+</fc-login-page>
 `;

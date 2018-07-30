@@ -12,12 +12,18 @@ import { AuthEffects } from "./effects/auth.effects";
 import { reducers } from "./reducers";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { MaterialModule } from "../material.module";
+import { AngularFireAuthModule } from "angularfire2/auth";
+
 
 export const COMPONENTS = [LoginPageComponent, LoginFormComponent];
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModule,
     AuthRoutingModule,
+    AngularFireAuthModule,
     StoreModule.forFeature("auth", reducers),
     EffectsModule.forFeature([AuthEffects]),
   ],
