@@ -6,9 +6,7 @@ import { MaterialModule } from '../../material.module';
 
 
 export const COMPONENTS = [
-  TestCaseComponent,
-  TestCaseListComponent,
-  TestRunComponent,
+
 ];
 
 @NgModule({

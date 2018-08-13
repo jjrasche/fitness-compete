@@ -48,7 +48,7 @@ export class AuthEffects {
   loginSuccess$ = this.actions.pipe(
     ofType(AuthActions.LoginSuccess),
     tap(() => {
-      this.router.navigate(["/"])
+      this.router.navigate(["/competition"])
     })
   );
 

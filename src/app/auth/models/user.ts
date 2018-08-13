@@ -2,6 +2,7 @@
 export class User{
   public email: string;
   public name: string;
+  public accessToken: string
 
   constructor(firebaseUser: firebase.auth.UserCredential = null) {
     if (firebaseUser) {

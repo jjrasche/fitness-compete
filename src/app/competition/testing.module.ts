@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { TestingEffects } from './effects/compete.effects';
+import { TestingEffects } from './effects/competition.effects';
 import { reducers } from './reducers';
 import { TestingRoutingModule } from './testing-routing.module';
 import { ComponentsModule } from './components/components.module';

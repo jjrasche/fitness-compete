@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 import { MaterialModule } from './material.module';
 import { reducers, metaReducers } from './reducers';
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     AuthModule,
     MaterialModule,
+    CoreModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     // Connects RouterModule with StoreModule
