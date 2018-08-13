@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './containers/app.component';
 import { NotFoundPageComponent } from './containers/not-found-page.component';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../material.module';
 
 export const COMPONENTS = [
   AppComponent,

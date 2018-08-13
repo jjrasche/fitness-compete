@@ -13,6 +13,7 @@ import { reducers } from "./reducers";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { MaterialModule } from "../material.module";
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { FitBitAuthService } from "./services/fit-bit-auth.service";
 
 
 export const COMPONENTS = [LoginPageComponent, LoginFormComponent];
@@ -29,7 +30,7 @@ export const COMPONENTS = [LoginPageComponent, LoginFormComponent];
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS,
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, FitBitAuthService, AuthGuard],
 })
 export class AuthModule {
 }

@@ -4,7 +4,8 @@ import { LoginPageComponent } from "./containers/login-page.component";
 
 const routes: Routes = [
   { path: "login", component: LoginPageComponent },
-  { path: "fitbitauth", component: LoginPageComponent },  
+  { path: "fitbitauth", component: LoginPageComponent },
+  
 ];
 
 @NgModule({

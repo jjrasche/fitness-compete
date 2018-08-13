@@ -16,7 +16,11 @@ import {
 import { User } from "../models/user";
 import { Authenticate } from "../models/authenticate";
 import { AuthService } from "../services/auth.service";
-import { Action } from "@ngrx/store";
+import { Action, Store, select } from '@ngrx/store';
+
+import * as fromAuth from '../reducers';
+import { AngularFireAuth } from "angularfire2/auth";
+import { FitBitAuthService } from "../services/fit-bit-auth.service";
 
 @Injectable()
 export class AuthEffects {
@@ -46,8 +50,18 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   loginSuccess$ = this.actions.pipe(
-    ofType(AuthActions.LoginSuccess),
-    tap(() => {
+    ofType(AuthActions.LoginSuccess, AuthActions.SignupSuccess),
+    map((action: LoginSuccess | SignupSuccess) => action.payload),
+    tap((user: User) => {
+      // send to authenticate with fitbit if access token not good
+      // get persisted data to see if user has an access token
+      // if not redirect to fitbit auth
+      // create route to handle coming back to app with access token
+      // store access token in persistance scheme
+      if (!this.fitBitAuthService.isAuthenticated) {
+        this.router.navigate([this.fitBitAuthService.formAuthenticationUrl()]);
+      }
+
       this.router.navigate(["/competition"])
     })
   );
@@ -63,6 +77,8 @@ export class AuthEffects {
   constructor(
     private actions: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private fitBitAuthService: FitBitAuthService,
+    public afAuth: AngularFireAuth
   ) {}
 }

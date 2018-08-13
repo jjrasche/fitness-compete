@@ -6,6 +6,7 @@
 
 export const environment = {
   production: false,
+  baseUrl: "http://localhost:4200",
   firebase: {
     apiKey: "AIzaSyAkhQlU93MMlQHDJRDmkLKFldzQTmsxi6g",
     authDomain: "fitness-compete.firebaseapp.com",
