@@ -13,35 +13,12 @@ export const initialState: State = {
 export function reducer(state = initialState, action: AuthActionsUnion): State {
   switch (action.type) {
     case AuthActions.Signup:
-    case AuthActions.Login: {
-      return {
-        ...state,
-        error: null,
-        pending: true,
-      };
-    }
-
+    case AuthActions.Login: return { ...state, error: null, pending: true };
     case AuthActions.SignupSuccess:
-    case AuthActions.LoginSuccess: {
-      return {
-        ...state,
-        error: null,
-        pending: false,
-      };
-    }
-
+    case AuthActions.LoginSuccess: return { ...state,  error: null,  pending: false };
     case AuthActions.SignupFailure:
-    case AuthActions.LoginFailure: {
-      return {
-        ...state,
-        error: action.payload,
-        pending: false,
-      };
-    }
-
-    default: {
-      return state;
-    }
+    case AuthActions.LoginFailure: return { ...state, error: action.payload, pending: false };
+    default: return state;
   }
 }
 

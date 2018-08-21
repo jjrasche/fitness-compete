@@ -7,16 +7,17 @@ import { LoginPageComponent } from "./containers/login-page.component";
 import { LoginFormComponent } from "./components/login-form.component";
 
 import { AuthService } from "./services/auth.service";
-import { AuthGuard } from "./services/auth-guard.service";
+import { FitBitAuthGuard } from "./services/auth-guard.service";
 import { AuthEffects } from "./effects/auth.effects";
 import { reducers } from "./reducers";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { MaterialModule } from "../material.module";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { FitBitAuthService } from "./services/fit-bit-auth.service";
+import { DummyComponent } from "./containers/dummy.component";
 
 
-export const COMPONENTS = [LoginPageComponent, LoginFormComponent];
+export const COMPONENTS = [LoginPageComponent, LoginFormComponent, DummyComponent];
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ export const COMPONENTS = [LoginPageComponent, LoginFormComponent];
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS,
-  providers: [AuthService, FitBitAuthService, AuthGuard],
+  providers: [AuthService, FitBitAuthService, FitBitAuthGuard],
 })
 export class AuthModule {
 }

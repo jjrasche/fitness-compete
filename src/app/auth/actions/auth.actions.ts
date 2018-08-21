@@ -1,6 +1,7 @@
 import { Action } from "@ngrx/store";
 import { User } from "../models/user";
 import { Authenticate } from "../models/authenticate";
+import { OauthDetails } from "../models/oauth-details";
 
 export enum AuthActions {
   Login = "[Auth] Login",
@@ -11,6 +12,7 @@ export enum AuthActions {
   Signup = "[Auth] Signup",
   SignupSuccess = "[Auth] Signup Success",
   SignupFailure = "[Auth] Signup Failure",
+  FitBitOauthSuccess = "[Auth] FitBit Oauth Success",
 }
 
 export class Login implements Action {
@@ -57,6 +59,12 @@ export class SignupFailure implements Action {
   constructor(public payload: any) { }
 }
 
+export class FitBitOauthSuccess implements Action {
+  readonly type = AuthActions.FitBitOauthSuccess;
+
+  constructor(public payload: {user: User, oauth: OauthDetails}) { }
+}
+
 export type AuthActionsUnion =
   | Login
   | LoginSuccess
@@ -65,4 +73,5 @@ export type AuthActionsUnion =
   | Logout
   | Signup
   | SignupSuccess
-  | SignupFailure;
+  | SignupFailure
+  | FitBitOauthSuccess;

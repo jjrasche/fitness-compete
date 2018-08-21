@@ -50,3 +50,10 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger, storeFreeze]
   : [];
+
+export const getParams = (state: fromRouter.SerializedRouterStateSnapshot) => state.root.params;
+export const selectRouterState = (state: fromRouter.RouterReducerState) => state.state;
+export const selectRouterNavigationId = createSelector(selectRouterState, getParams);
+
+export const getRouter = (state: fromRouter.SerializedRouterStateSnapshot) => state;
+export const selectRouter = createSelector(selectRouterState, getRouter);

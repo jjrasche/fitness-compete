@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { of, Observable, from } from "rxjs";
-import { switchMap, catchError, exhaustMap, map, tap } from "rxjs/operators";
+import { switchMap, catchError, exhaustMap, map, tap, take } from "rxjs/operators";
 
 import {
   AuthActions,
@@ -12,6 +12,7 @@ import {
   SignupSuccess,
   SignupFailure,
   Signup,
+  FitBitOauthSuccess,
 } from "../actions/auth.actions";
 import { User } from "../models/user";
 import { Authenticate } from "../models/authenticate";
@@ -21,6 +22,7 @@ import { Action, Store, select } from '@ngrx/store';
 import * as fromAuth from '../reducers';
 import { AngularFireAuth } from "angularfire2/auth";
 import { FitBitAuthService } from "../services/fit-bit-auth.service";
+import { OauthDetails } from "../models/oauth-details";
 
 @Injectable()
 export class AuthEffects {
@@ -48,6 +50,33 @@ export class AuthEffects {
       ),
     ));
 
+  // store credentials in local storage
+  @Effect()
+  fitBitOauthSuccess$ = this.actions.pipe(
+    ofType(AuthActions.FitBitOauthSuccess),
+    switchMap((action: FitBitOauthSuccess) =>
+      this.fitBitAuthService.setFitBitAuthentication(action.payload.oauth).pipe(
+        map((t: any) => action),
+        take(1)
+      )
+    )
+    // map((action: FitBitOauthSuccess) => action.payload),
+    //   tap((action: FitBitOauthSuccess) => {
+    //     this.fitBitAuthService.setFitBitAuthentication(action.payload.oauth);
+    // })
+    // exhaustMap((oauth: OauthDetails) =>
+    //   this.fitBitAuthService.setFitBitAuthentication(oauth).pipe(
+    //     map(payload => null),
+    //     catchError(err => null)
+    //   )
+    // )
+  );
+
+    /**
+     * login
+     * loginSuccess
+     * setUser, 
+     */
   @Effect({ dispatch: false })
   loginSuccess$ = this.actions.pipe(
     ofType(AuthActions.LoginSuccess, AuthActions.SignupSuccess),
@@ -58,11 +87,16 @@ export class AuthEffects {
       // if not redirect to fitbit auth
       // create route to handle coming back to app with access token
       // store access token in persistance scheme
-      if (!this.fitBitAuthService.isAuthenticated) {
-        this.router.navigate([this.fitBitAuthService.formAuthenticationUrl()]);
-      }
 
-      this.router.navigate(["/competition"])
+      // store is full --> if ls !contains --> push to ls
+
+      this.fitBitAuthService.setUser(user);
+      if (!this.fitBitAuthService.authenticated) {
+        let url = this.fitBitAuthService.authUrl;
+        window.location.href = url
+      } else {
+        this.router.navigate(["/competition"])
+      }
     })
   );
 

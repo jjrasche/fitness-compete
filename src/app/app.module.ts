@@ -49,7 +49,9 @@ import { CoreModule } from './core/core.module';
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    { provide: "BaseUrl", useValue: environment.baseUrl },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
