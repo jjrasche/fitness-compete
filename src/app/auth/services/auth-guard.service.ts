@@ -45,11 +45,14 @@ export class FitBitAuthGuard implements CanActivate {
      */
     // get user from storage, create oath object, add both user and oauth to store
     return this.fitBitAuthService.user.pipe(
-      tap((user: User) => {
-        let oauthDetails = this.fitBitAuthService.parseOathUrl(window.location.href);
-        this.store.dispatch(new AuthActions.FitBitOauthSuccess({ user: user, oauth: oauthDetails }));
+      map(user => {
+        if (user) {
+          let oauthDetails = this.fitBitAuthService.parseOathUrl(window.location.href);
+          this.store.dispatch(new AuthActions.FitBitOauthSuccess({ user: user, oauth: oauthDetails }));
+          return true;
+        }
+        return false;
       }),
-      map((user: User) => user == null),
       take(1)
     );
   }

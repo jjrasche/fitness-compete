@@ -53,11 +53,12 @@ export class FitBitAuthService {
     return auth.expiratoin < new Date();
   }
 
-  setFitBitAuthentication(oauth: OauthDetails): Observable<any> {
-    return Observable.create((observer: any) => {
-      observer.next(localStorage.setItem(FITBITOAUTH, JSON.stringify(oauth)));
-      observer.complete();
-    });
+  setFitBitAuthentication(oauth: OauthDetails): void { //} Observable<any> {
+    // return Observable.create((observer: any) => {
+    //   observer.next(localStorage.setItem(FITBITOAUTH, JSON.stringify(oauth)));
+    //   observer.complete();
+    // });
+    localStorage.setItem(FITBITOAUTH, JSON.stringify(oauth));
   }
 
   urlIsOauthUrl(url: string): boolean {

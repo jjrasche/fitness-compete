@@ -1,20 +1,4 @@
-{
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ]
-  }
-}
+dd9344251cf3264b6b7448b33c1f7afca047091d
+infinite loop between effect and reducer after dispatching FitBitOauthSuccess from guard when oauth results returned
+
+  @Effect({ dispatch: false })  should adorn any effect that doesn't dispatch an action

@@ -51,25 +51,19 @@ export class AuthEffects {
     ));
 
   // store credentials in local storage
-  @Effect()
+  @Effect({ dispatch: false })
   fitBitOauthSuccess$ = this.actions.pipe(
     ofType(AuthActions.FitBitOauthSuccess),
-    switchMap((action: FitBitOauthSuccess) =>
-      this.fitBitAuthService.setFitBitAuthentication(action.payload.oauth).pipe(
-        map((t: any) => action),
-        take(1)
-      )
-    )
-    // map((action: FitBitOauthSuccess) => action.payload),
-    //   tap((action: FitBitOauthSuccess) => {
-    //     this.fitBitAuthService.setFitBitAuthentication(action.payload.oauth);
-    // })
-    // exhaustMap((oauth: OauthDetails) =>
-    //   this.fitBitAuthService.setFitBitAuthentication(oauth).pipe(
-    //     map(payload => null),
-    //     catchError(err => null)
+    // switchMap((action: FitBitOauthSuccess) =>
+    //   this.fitBitAuthService.setFitBitAuthentication(action.payload.oauth).pipe(
+    //     map((t: any) => action),
     //   )
-    // )
+    // ),
+    tap((action: FitBitOauthSuccess) => 
+      this.fitBitAuthService.setFitBitAuthentication(action.payload.oauth)
+    )
+    // ,
+    // take(1)
   );
 
     /**
