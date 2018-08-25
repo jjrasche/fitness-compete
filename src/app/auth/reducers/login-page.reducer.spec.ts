@@ -6,7 +6,7 @@ import {
   LoginFailure,
   Logout,
 } from "../actions/auth.actions";
-import { Authenticate, User } from "../models/user";
+import { Authenticate, User } from "../../shared/models/user";
 
 describe("LoginPageReducer", () => {
   describe("undefined action", () => {

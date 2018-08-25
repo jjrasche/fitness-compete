@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Authenticate } from '../models/authenticate';
+import { Authenticate } from '../../shared/models/authenticate';
 
 @Component({
   selector: 'fc-login-form',

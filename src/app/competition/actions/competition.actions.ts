@@ -1,18 +1,38 @@
-// import { Update } from '@ngrx/entity';
-// import { unionize, ofType, UnionOf } from 'unionize';
+import { Update } from '@ngrx/entity';
+import { Competition } from '../models/competition.model';
+import { Action } from '@ngrx/store';
 
-// import { System } from '../models/system.model';
-// import { TestCase } from '../models/test-case.model';
-// import { API } from '../models/api.model';
+export enum CompetitionActions {
+    LOAD_COMPETITIONS = '[Competition] LOAD',
+    ADD_COMPETITION = '[Competition] ADD',
+    UPDATE_COMPETITION = '[Competition] UPDATE',
+    DELETE_COMPETITION = '[Competition] DELETE',
+    SELECT_COMPETITION = '[Competition] SELECT',
+}
 
-// export const SystemActions = unionize({
-//   LOAD_SYSTEMS: ofType<Array<System>>(),
-//   ADD_SYSTEM: ofType<System>(),
-//   UPDATE_SYSTEM: ofType<Update<System>>(),
-//   DELETE_SYSTEM: ofType<number>(),
-// },
-//   { tag: 'type', value: 'payload' }
-// );
+export class load implements Action {
+    readonly type = CompetitionActions.LOAD_COMPETITIONS;
+    constructor(public payload: Array<Competition>) { }
+}
+export class add implements Action {
+    readonly type = CompetitionActions.ADD_COMPETITION;
+    constructor(public payload: Competition) { }
+}
+export class update implements Action {
+    readonly type = CompetitionActions.UPDATE_COMPETITION;
+    constructor(public payload: Update<Competition>) { }
+}
+export class remove implements Action {
+    readonly type = CompetitionActions.DELETE_COMPETITION;
+    constructor(public payload: number) { }
+}
+export class select implements Action {
+    readonly type = CompetitionActions.SELECT_COMPETITION;
+    constructor(public payload: number) { }
+}
 
-// // export type SystemActionTypes = typeof SystemActions._Union;
-// export type SystemActionTypes = UnionOf<typeof SystemActions>;
+export type CompetitionActionUnion =
+    | load
+    | add
+    | update
+    | remove;

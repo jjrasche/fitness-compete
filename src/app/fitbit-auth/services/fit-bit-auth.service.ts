@@ -1,7 +1,5 @@
 import { Inject, Injectable } from "@angular/core";
-import { OauthDetails } from "../models/oauth-details";
-import { User } from "../models/user";
-import { Observable } from "rxjs";
+import { FitBitOauthDetails } from "../models/fit-bit-oauth-details";
 
 export const FITBITOAUTH = "fitBitOauth";
 export const USER = "user";
@@ -10,6 +8,7 @@ export const fitBitAppId = "client_id=22CXX6&";
 export const fitBitRedirectUrlBase = "redirect_uri=";
 export const fitBitScope = "scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&";
 export const fitButExpireTimeout = "expires_in=31536000";
+export const redirectUrl = "/competition/fitbitauth/&"
 
 @Injectable()
 export class FitBitAuthService {
@@ -19,22 +18,7 @@ export class FitBitAuthService {
   }
 
   get authUrl(): string {
-    return `${baseFitBitAuthUrl}${fitBitAppId}${fitBitRedirectUrlBase}${encodeURI(this.baseUrl)}/fitbitauth/&${fitBitScope}${fitButExpireTimeout}`;
-  }
-
-  get userSaved(): boolean {
-    return localStorage.getItem(USER) !== null;
-  }
-
-  get user(): Observable<User> {
-    return Observable.create((observer: any) => {
-      observer.next(JSON.parse(localStorage.getItem(USER)) as User);
-      observer.complete();
-    });
-  }
- 
-  setUser(user: User) {
-    localStorage.setItem(USER, JSON.stringify(user));
+    return `${baseFitBitAuthUrl}${fitBitAppId}${fitBitRedirectUrlBase}${encodeURI(this.baseUrl)}${redirectUrl}${fitBitScope}${fitButExpireTimeout}`;
   }
 
   get accessToken(): string {
@@ -54,10 +38,6 @@ export class FitBitAuthService {
   }
 
   setFitBitAuthentication(oauth: OauthDetails): void { //} Observable<any> {
-    // return Observable.create((observer: any) => {
-    //   observer.next(localStorage.setItem(FITBITOAUTH, JSON.stringify(oauth)));
-    //   observer.complete();
-    // });
     localStorage.setItem(FITBITOAUTH, JSON.stringify(oauth));
   }
 
@@ -68,7 +48,7 @@ export class FitBitAuthService {
   parseOathUrl(oathUrl: string): OauthDetails {
     let args = oathUrl.split("#")[1].split("&");
 
-    return new OauthDetails(
+    return new FitBitOauthDetails(
       args[0].split("=")[1],
       args[1].split("=")[1],
       args[2].split("=")[1].split("+"),

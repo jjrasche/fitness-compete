@@ -3,14 +3,13 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AngularFireAuth } from "angularfire2/auth";
 
-import { Authenticate } from "../models/authenticate";
+import { Authenticate } from "../../shared/models/authenticate";
 
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
 
   constructor(
-    // public db: AngularFireDatabase, 
     public afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
 

@@ -1,6 +1,5 @@
 import { AuthActionsUnion, AuthActions } from "../actions/auth.actions";
-import { User } from "../models/user";
-import { OauthDetails } from "../models/oauth-details";
+import { User } from "../../shared/models/user";
 
 export interface State {
   user: User | null;
@@ -19,7 +18,6 @@ export function reducer(state = initialState, action: AuthActionsUnion): State {
       let ret = { ...state, user: action.payload };
       return ret;
     }
-    case AuthActions.FitBitOauthSuccess: return { ...state, user: action.payload.user, oath: action.payload.oauth };
     case AuthActions.Logout: return initialState;
     default: return state;
   }

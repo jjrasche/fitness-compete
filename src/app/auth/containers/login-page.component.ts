@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Authenticate } from '../models/authenticate';
 import * as fromAuth from '../reducers';
 import * as AuthActions from '../actions/auth.actions';
 import { Router } from '@angular/router';
-import { FitBitAuthService } from '../services/fit-bit-auth.service';
-import { switchMap, catchError, exhaustMap, map, tap } from "rxjs/operators";
-import { User } from '../models/user';
 
 @Component({
   selector: 'fc-login-page',
@@ -27,7 +23,6 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private store: Store<fromAuth.State>,
     private router: Router,
-    private fitBitAuthService: FitBitAuthService,
   ) { }
 
   ngOnInit() { }

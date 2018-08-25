@@ -1,5 +1,3 @@
-import { OauthDetails } from "./oauth-details";
-
 export class User{
   public email: string;
   public name: string;

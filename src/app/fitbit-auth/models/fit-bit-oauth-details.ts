@@ -1,5 +1,5 @@
 
-export class OauthDetails{
+export class FitBitOauthDetails implements OauthDetails{
   constructor(
     public accessToken: string,
     public id: string,

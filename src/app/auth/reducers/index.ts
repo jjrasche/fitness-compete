@@ -7,7 +7,7 @@ import * as fromAuth from "./auth.reducer";
 import * as fromRoot from "../../reducers/index";
 import * as fromLoginPage from "./login-page.reducer";
 import { SerializedRouterStateSnapshot } from "@ngrx/router-store";
-import { User } from "../models/user";
+import { User } from "../../shared/models/user";
 
 export interface AuthState {
   status: fromAuth.State;

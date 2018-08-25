@@ -1,7 +1,7 @@
 import { reducer } from "./auth.reducer";
 import * as fromAuth from "./auth.reducer";
 import { Login, LoginSuccess, Logout } from "../actions/auth.actions";
-import { Authenticate, User } from "../models/user";
+import { Authenticate, User } from "../../shared/models/user";
 
 describe("AuthReducer", () => {
   describe("undefined action", () => {

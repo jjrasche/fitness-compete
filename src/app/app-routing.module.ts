@@ -4,11 +4,11 @@ import { NotFoundPageComponent } from './core/containers/not-found-page.componen
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  // {
-  //   path: 'competition',
-  //   loadChildren: './competition/competition.module#CompetiitonModule',
-  //   // canActivate: [AuthGuard],
-  // },
+  {
+    path: 'competition',
+    loadChildren: './competition/competition.module#CompetiitonModule',
+    // canActivate: [AuthGuard],
+  },
   { path: '**', component: NotFoundPageComponent },
 ];
 
