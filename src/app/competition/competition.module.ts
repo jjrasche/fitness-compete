@@ -14,6 +14,7 @@ import { CompetitionService } from './services/competition.service';
 import { FitBitAuthModule } from '../fitbit-auth/fit-bit-auth.module';
 import { CompetitionDetailsComponent } from './components/competition/competition-details.component';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../material.module';
 
 const COMPONENTS = [CompetitionDetailsComponent];
 const SERVICES = [CompetitionsResolver, CompetitionService];
@@ -21,6 +22,7 @@ const SERVICES = [CompetitionsResolver, CompetitionService];
 @NgModule({
     imports: [
         CommonModule,
+        MaterialModule,
         ReactiveFormsModule,
         FitBitAuthModule.forRoot(),
         CompetitionRoutingModule,

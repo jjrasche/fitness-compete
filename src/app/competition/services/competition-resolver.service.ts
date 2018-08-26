@@ -19,7 +19,10 @@ export class CompetitionsResolver {
 
     public resolve(route: ActivatedRouteSnapshot, state: Object): Observable<Competition>  {
         return this.competitionService.getAll().pipe(
-            tap((competitions: any) => this.store.dispatch(new competition.load(competitions)))
+            tap((competitions: any) => {
+                this.store.dispatch(new competition.load(competitions));
+                this.store.dispatch(new competition.select(competitions[0].id));
+            })
         );
     }
 }

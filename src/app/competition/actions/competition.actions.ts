@@ -35,4 +35,5 @@ export type CompetitionActionUnion =
     | load
     | add
     | update
-    | remove;
+    | remove
+    | select;

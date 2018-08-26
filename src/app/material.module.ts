@@ -16,6 +16,7 @@ import {
   MatMenuModule,
   MatDividerModule,
   MatCardModule,
+  MatSelectModule,
    } from '@angular/material';
 
 const modules = [

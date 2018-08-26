@@ -35,7 +35,7 @@ export class CompetitionService {
         competition.competitors = [new Competitor(5, "jim", goals)];
 
         return Observable.create((observer: any) => {
-            observer.next(competition)
+            observer.next([competition])
             observer.complete();
         });
     }

@@ -23,6 +23,7 @@ export function reducer(state = initialState, action: CompetitionActionUnion): S
     case CompetitionActions.ADD_COMPETITION: return adapter.addOne(action.payload, state);
     case CompetitionActions.UPDATE_COMPETITION: return adapter.updateOne(action.payload, state);
     case CompetitionActions.DELETE_COMPETITION: return adapter.removeOne(action.payload, state);
+    case CompetitionActions.SELECT_COMPETITION: return { ...state, selectedCompetitionId: action.payload };
     default: return state;
   }
 }
