@@ -2,7 +2,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { CompetitionsResolver } from './services/competition-resolver.service';
-import { CompetitionDetailsComponent } from './components/competition/competition-details.component';
+import { CompetitionDetailsComponent } from './components/competition-details/competition-details.component';
 import { FitBitAuthGuard } from '../fitbit-auth/services/fit-bit-auth-guard.service';
 
 const routes: Routes = [

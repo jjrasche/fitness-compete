@@ -7,12 +7,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { CompetitionEffects } from './effects/competition.effects';
 import { reducers } from './reducers';
 import { CompetitionRoutingModule } from './competition-routing.module';
-import { ComponentsModule } from './components/components.module';
 
 import { CompetitionsResolver } from './services/competition-resolver.service';
 import { CompetitionService } from './services/competition.service';
 import { FitBitAuthModule } from '../fitbit-auth/fit-bit-auth.module';
-import { CompetitionDetailsComponent } from './components/competition/competition-details.component';
+import { CompetitionDetailsComponent } from './components/competition-details/competition-details.component';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 
@@ -26,7 +25,6 @@ const SERVICES = [CompetitionsResolver, CompetitionService];
         ReactiveFormsModule,
         FitBitAuthModule.forRoot(),
         CompetitionRoutingModule,
-        ComponentsModule,
         StoreModule.forFeature('competitions', reducers),
         EffectsModule.forFeature([CompetitionEffects]),
     ],
