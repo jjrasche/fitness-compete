@@ -2,3 +2,11 @@ dd9344251cf3264b6b7448b33c1f7afca047091d
 infinite loop between effect and reducer after dispatching FitBitOauthSuccess from guard when oauth results returned
 
   @Effect({ dispatch: false })  should adorn any effect that doesn't dispatch an action
+
+
+
+PROBLEM: npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+npm WARN enoent SKIPPING OPTIONAL DEPENDENCY: ENOENT: no such file or directory, rename '/Users/jim/WorkSpace/fitness-compete/node_modules
+/.staging/fsevents-56b358c0/node_modules/detect-lifc' -> '/Users/jim/WorkSpace/fitness-compete/node_modules/.staging/detect-lifc-563e0437'
+
+SOLUTION: https://github.com/npm/npm/issues/18902 deleted package-lock.json file  
