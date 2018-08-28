@@ -23,4 +23,18 @@ export class UserService {
   setUser(user: User) {
     localStorage.setItem(USER, JSON.stringify(user));
   }
+
+  getAvailableUsers(): Observable<Array<User>> {
+    // TOOD: should this go in store?
+    return Observable.create((observer: any) => {
+      let userArray = new Array<User>();
+      userArray.push(new User("apples@gmail.com", "apples"))
+      userArray.push(new User("oranges@gmail.com", "oranges"))
+      userArray.push(new User("bananas@gmail.com", "bananas"))
+      userArray.push(new User("plantanes@gmail.com", "plantanes"))
+      userArray.push(new User("horseradish@gmail.com", "horseradish"))
+      observer.next(userArray);
+      observer.complete();
+    })
+  }
 }

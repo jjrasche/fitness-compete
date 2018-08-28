@@ -5,10 +5,11 @@ import * as fromRoot from '../../reducers/index';
 import { Competitor } from '../models/competitor.model';
 import { TimeSpan } from '../models/time-span.model';
 import { CompetitionFormActions, CompetitionFormActionUnion } from '../actions/competition-form.actions';
+import { Calculation } from '../../shared/models/calculation';
 
 export interface FormValue {
   competitors: Array<Competitor>;
-  score: string;
+  calculation: Calculation;
   timeSpan: TimeSpan;
 }
 
@@ -22,7 +23,7 @@ export interface State extends fromRoot.State {
 export const FORM_ID = 'competitionForm';
 export const initialState = createFormGroupState<FormValue>(FORM_ID, {
   competitors: [],
-  score: '',
+  calculation: new Calculation(),
   timeSpan: null
 });
 
@@ -39,3 +40,4 @@ export const reducers = combineReducers<State['competitionForm'], any>({
 });
 
 export const getFormState = (state: State) => state.competitionForm.formState;
+export const getSubmittedValueState = (state: State) => state.competitionForm.submittedValue;

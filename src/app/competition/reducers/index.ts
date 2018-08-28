@@ -25,6 +25,7 @@ export const selectAllCompetitions = createSelector(selectCompetitionState, from
 export const selectCompetitionsEntities = createSelector(selectCompetitionState, fromCompetition.selectEntities);
 export const selectCompetitionFormState = (state: State) => state.competition.competitionForm;
 export const selectCompetitionForm = createSelector(selectCompetitionFormState, fromCompetitionForm.getFormState);
+export const selectCompetitionSubmittedValue = createSelector(selectCompetitionFormState, fromCompetitionForm.getSubmittedValueState);
 
 
 export const getSelectedCompetitionId = createSelector(

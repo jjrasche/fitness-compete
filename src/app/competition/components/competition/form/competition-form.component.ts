@@ -6,6 +6,11 @@ import { map, take } from 'rxjs/operators';
 
 import { FormValue, initialState, State } from '../../../reducers/competition-form.reducer';
 
+import * as fromCompetition from '../../../reducers/index';
+import * as form from '../../../actions/competition-form.actions';
+import { User } from '../../../../shared/models/user';
+import { UserService } from '../../../../shared/services/user.service';
+
 @Component({
   selector: 'app-competition-form',
   templateUrl: './competition-form.component.html',
@@ -15,12 +20,13 @@ import { FormValue, initialState, State } from '../../../reducers/competition-fo
 export class CompetitionFormComponent {
   formState: Observable<FormGroupState<FormValue>>;
   submittedValue: Observable<FormValue | undefined>;
+  users: Observable<Array<User>>;
 
-  constructor(private store: Store<State>) {
-    this.formState = store.pipe(select(s => s.simpleForm.formState));
-    // this.competition = store.pipe(select(fromCompetition.getSelectedCompetition));
-
-    this.submittedValue = store.pipe(select(s => s.simpleForm.submittedValue));
+  constructor(private store: Store<State>,
+  private userService: UserService) {
+    this.formState = store.pipe(select(fromCompetition.selectCompetitionForm));
+    this.submittedValue = store.pipe(select(fromCompetition.selectCompetitionSubmittedValue));
+    this.users = this.userService.getAvailableUsers();
   }
 
   reset() {
@@ -29,9 +35,13 @@ export class CompetitionFormComponent {
   }
 
   submit() {
-    this.formState$.pipe(
+    // this.store.dispatch(new testCase.close(this.testCase));
+
+    this.formState.pipe(
       take(1),
-      map(fs => new SetSubmittedValueAction(fs.value)),
+      map(fs => {
+        return new form.submit(fs.value)
+      }),
     ).subscribe(this.store);
   }
 }

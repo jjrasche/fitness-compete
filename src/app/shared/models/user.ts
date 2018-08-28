@@ -1,11 +1,5 @@
 export class User{
-  public email: string;
-  public name: string;
-
-  constructor(firebaseUser: firebase.auth.UserCredential = null) {
-    if (firebaseUser) {
-      this.email = firebaseUser.user.email;
-      this.name = firebaseUser.user.displayName;
-    }
-  }
+  constructor(
+    public email: string = null,
+    public name: string = null) {}
 }

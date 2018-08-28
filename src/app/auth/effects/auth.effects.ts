@@ -30,7 +30,7 @@ export class AuthEffects {
     map(action => action.payload),
     exhaustMap((auth: Authenticate) =>
       from(this.authService.signup(auth)).pipe(
-        map((credential: firebase.auth.UserCredential)  => new SignupSuccess(new User(credential))),
+        map((credential: firebase.auth.UserCredential) => new SignupSuccess(new User(credential.user.email, credential.user.displayName))),
         catchError(err => of(new SignupFailure(err)))
       )
     ));
@@ -42,7 +42,7 @@ export class AuthEffects {
       map((action: Login) => action.payload),
       switchMap((auth: Authenticate) =>
         from(this.authService.login(auth)).pipe(
-          map(credential => new LoginSuccess(new User(credential)),
+          map(credential => new LoginSuccess(new User(credential.user.email, credential.user.displayName)),
           catchError(err => of(new LoginFailure(err)))
         )
       ),
