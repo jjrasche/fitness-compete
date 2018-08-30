@@ -25,7 +25,7 @@ const SERVICES = [CompetitionsResolver, CompetitionService];
         ReactiveFormsModule,
         FitBitAuthModule.forRoot(),
         CompetitionRoutingModule,
-        StoreModule.forFeature('competitions', reducers),
+        StoreModule.forFeature('competition', reducers),
         EffectsModule.forFeature([CompetitionEffects]),
     ],
     declarations: COMPONENTS,
