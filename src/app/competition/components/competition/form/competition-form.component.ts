@@ -14,7 +14,7 @@ import { UserService } from '../../../../shared/services/user.service';
 @Component({
   selector: 'app-competition-form',
   templateUrl: './competition-form.component.html',
-  styleUrls: ['./competition-form.component.scss'],
+  styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompetitionFormComponent {

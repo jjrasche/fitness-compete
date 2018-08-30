@@ -10,7 +10,7 @@ import { AuthService } from "./services/auth.service";
 import { AuthEffects } from "./effects/auth.effects";
 import { reducers } from "./reducers";
 import { AuthRoutingModule } from "./auth-routing.module";
-import { MaterialModule } from "../material.module";
+import { MaterialModule } from "../material/material.module";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { DummyComponent } from "./containers/dummy.component";
 import { ThirdPartyAuthService } from "./services/third-party-auth.service";

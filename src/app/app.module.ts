@@ -16,7 +16,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { environment } from '../environments/environment';
 import { AuthModule } from './auth/auth.module';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './material/material.module';
 import { reducers, metaReducers } from './reducers';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';

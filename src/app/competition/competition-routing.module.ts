@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CompetitionsResolver } from './services/competition-resolver.service';
 import { CompetitionDetailsComponent } from './components/competition-details/competition-details.component';
 import { FitBitAuthGuard } from '../fitbit-auth/services/fit-bit-auth-guard.service';
+import { CompetitionFormComponent } from './components/competition/form/competition-form.component';
 
 const routes: Routes = [
     { path: "fitbitauth", component: CompetitionDetailsComponent, canActivate: [FitBitAuthGuard], },
@@ -17,7 +18,7 @@ const routes: Routes = [
     },
     {
         canActivate: [],
-        component: CompetitionDetailsComponent,
+        component: CompetitionFormComponent,
         path: ':id',
         resolve: {
             system: CompetitionsResolver

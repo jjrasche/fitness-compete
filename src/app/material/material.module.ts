@@ -17,7 +17,15 @@ import {
   MatDividerModule,
   MatCardModule,
   MatSelectModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatSliderModule,
+  MatNativeDateModule,
    } from '@angular/material';
+
+import { CustomErrorStateMatcherDirective } from './error-state-matcher';
+import { MatListOptionFixDirective } from './mat-list-option-fix';
+import { NgrxMatSelectViewAdapter } from './mat-select-view-adapter';
 
 const modules = [
   MatButtonModule,
@@ -36,10 +44,25 @@ const modules = [
   MatMenuModule,
   MatDividerModule,
   MatCardModule,
+  MatSelectModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSliderModule,
 ];
 
 @NgModule({
+  declarations: [
+    NgrxMatSelectViewAdapter,
+    CustomErrorStateMatcherDirective,
+    MatListOptionFixDirective,
+  ],
   imports: modules,
-  exports: modules
+  exports: [
+    modules,
+    NgrxMatSelectViewAdapter,
+    CustomErrorStateMatcherDirective,
+    MatListOptionFixDirective
+  ]
   ,
 }) export class MaterialModule { };
