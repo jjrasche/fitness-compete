@@ -1,5 +1,4 @@
-<form [ngrxFormState]="formState$ | async"
-  (submit)="submit()">
+<form [ngrxFormState]="formState | async" (submit)="submit()">
   <div>
     <mat-form-field>
       <mat-select [ngrxFormControlState]="(formState | async).controls.competitors" placeholder="Competitors" multiple>
@@ -8,36 +7,52 @@
     </mat-form-field>
   </div>
   <div>
-    <div *ngFor="let factor of (formState | async).controls.calculation; let i = index">
-      <mat-form-field>
-        <mat-select [ngrxFormControlState]="(formState$ | async).controls.calculations[i].metric" placeholder="Metric">
-          <mat-option *ngFor="let metric of MetricType" [value]="metric">{{metric}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-slider
-          [max]="2"
+    <!-- {{ json.stringify((formState | async).controls.factors.controls[0].controls["metric"]) }} -->
+    <mat-icon class="run-button" (click)="addFactor(0)">+</mat-icon>
+    <div *ngFor="let factor of (formState | async).controls.factors.controls; let idx = index">
+      <div>
+        <mat-form-field>
+          <mat-select [ngrxFormControlState]="factor.controls['metric']" placeholder="Metric">
+            <mat-option *ngFor="let metric of (metricTypes | enumToArray)" [value]="metric">{{metric}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-slider [max]="2"
           [min]="-2"
           [step]=".1"
           [thumbLabel]="true"
           [tickInterval]="true"
-          [ngrxFormControlState]="(formState$ | async).controls.calculations[i].weight">
+          [ngrxFormControlState]="factor.controls['weight']">
         </mat-slider>
-      </mat-form-field>
+      </div>
     </div>
+    <!-- <div>
+      <mat-form-field>
+        <mat-select [ngrxFormControlState]="(formState | async).controls.factors.controls[0].controls['metric']" placeholder="Metric">
+          <mat-option *ngFor="let metric of (metricTypes | enumToArray)" [value]="metric">{{metric}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slider
+        [max]="2"
+        [min]="-2"
+        [step]=".1"
+        [thumbLabel]="true"
+        [tickInterval]="true"
+        [ngrxFormControlState]="(formState | async).controls.factors.controls[0].controls['weight']">
+      </mat-slider>
+    </div> -->
   </div>
-  <div>
+  <!-- <div>
     <mat-form-field>
-      <input [ngrxFormControlState]="(formState$ | async).controls.timeSpan.startDate" matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <input [ngrxFormControlState]="(formState | async).controls.timeSpan.startDate" matInput [matDatepicker]="picker" placeholder="Choose a date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
-      <input [ngrxFormControlState]="(formState$ | async).controls.timeSpan.endDate" matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <input [ngrxFormControlState]="(formState | async).controls.timeSpan.endDate" matInput [matDatepicker]="picker" placeholder="Choose a date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-  </div>
+  </div> -->
   <div class="buttons">
     <div></div>
     <div>
@@ -45,9 +60,9 @@
         Submit
       </button>
       <button type="button"
-        [disabled]="(formState$ | async).isPristine
-                          && (formState$ | async).isUntouched
-                          && (formState$ | async).isUnsubmitted"
+        [disabled]="(formState | async).isPristine
+                          && (formState | async).isUntouched
+                          && (formState | async).isUnsubmitted"
         (click)="reset()">
         Reset
       </button>
@@ -55,8 +70,8 @@
   </div>
 </form>
 <br />
-<div *ngIf="(formState$ | async).isSubmitted">
+<div *ngIf="(formState | async).isSubmitted">
   The form was submitted with the following value:
   <br />
-  <pre>{{ submittedValue$ | async | json }}</pre>
+  <pre>{{ submittedValue | async | json }}</pre>
 </div>

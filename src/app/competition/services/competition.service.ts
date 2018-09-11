@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { take } from "rxjs/operators";
+import { take, tap } from "rxjs/operators";
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Competition } from '../models/competition.model';
@@ -34,9 +34,10 @@ export class CompetitionService {
         competition.timeSpan = new TimeSpan(new Date("08-23-2018"), new Date("08-30-2018"))
         competition.competitors = [new Competitor(5, "jim", goals)];
 
-        return Observable.create((observer: any) => {
+        var ret = Observable.create((observer: any) => {
             observer.next([competition])
             observer.complete();
         });
+        return ret;
     }
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { FormGroupState, ResetAction, SetValueAction } from 'ngrx-forms';
+import { FormGroupState, ResetAction, SetValueAction, AddArrayControlAction } from 'ngrx-forms';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -10,6 +10,7 @@ import * as fromCompetition from '../../../reducers/index';
 import * as form from '../../../actions/competition-form.actions';
 import { User } from '../../../../shared/models/user';
 import { UserService } from '../../../../shared/services/user.service';
+import { MetricType } from '../../../models/metric-type.enum';
 
 @Component({
   selector: 'app-competition-form',
@@ -18,14 +19,22 @@ import { UserService } from '../../../../shared/services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompetitionFormComponent {
+  public json = JSON;
+  public metricTypes = MetricType;
+
   formState: Observable<FormGroupState<FormValue>>;
   submittedValue: Observable<FormValue | undefined>;
   users: Observable<Array<User>>;
 
   constructor(private store: Store<State>,
   private userService: UserService) {
-    this.formState = store.pipe(select(fromCompetition.selectCompetitionForm));
-    this.submittedValue = store.pipe(select(fromCompetition.selectCompetitionSubmittedValue));
+    // TODO: why is the store not structured correctly  s.competitionForm.formState
+    this.formState = store.pipe(select(s => {
+      return (s as any).competition.competitionForm.formState
+    }));
+    this.submittedValue = store.pipe(select(s => {
+      return (s as any).competition.competitionForm.submittedValue
+    }));
     this.users = this.userService.getAvailableUsers();
   }
 
@@ -41,6 +50,16 @@ export class CompetitionFormComponent {
       take(1),
       map(fs => {
         return new form.submit(fs.value)
+      }),
+    ).subscribe(this.store);
+  }
+
+  addFactor(index: number) {
+    this.formState.pipe(
+      take(1),
+      map((form: FormGroupState<FormValue>) => {
+        let firstValue = form.controls.factors.value[0];
+        return new AddArrayControlAction(form.controls.factors.id, firstValue, index)
       }),
     ).subscribe(this.store);
   }

@@ -16,14 +16,17 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { CompetitionFormComponent } from './components/competition/form/competition-form.component';
 import { NgrxFormsModule } from 'ngrx-forms';
+import { SimpleFormPageComponent } from './components/competition/simple-form/simple-form.component';
+import { SharedModule } from '../shared/shared.module';
 
-const COMPONENTS = [CompetitionDetailsComponent, CompetitionFormComponent];
+const COMPONENTS = [CompetitionDetailsComponent, CompetitionFormComponent, SimpleFormPageComponent];
 const SERVICES = [CompetitionsResolver, CompetitionService];
 
 @NgModule({
     imports: [
         CommonModule,
         MaterialModule,
+        SharedModule,
         ReactiveFormsModule,
         FitBitAuthModule.forRoot(),
         CompetitionRoutingModule,

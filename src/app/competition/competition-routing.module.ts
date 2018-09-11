@@ -5,6 +5,7 @@ import { CompetitionsResolver } from './services/competition-resolver.service';
 import { CompetitionDetailsComponent } from './components/competition-details/competition-details.component';
 import { FitBitAuthGuard } from '../fitbit-auth/services/fit-bit-auth-guard.service';
 import { CompetitionFormComponent } from './components/competition/form/competition-form.component';
+import { SimpleFormPageComponent } from './components/competition/simple-form/simple-form.component';
 
 const routes: Routes = [
     { path: "fitbitauth", component: CompetitionDetailsComponent, canActivate: [FitBitAuthGuard], },
