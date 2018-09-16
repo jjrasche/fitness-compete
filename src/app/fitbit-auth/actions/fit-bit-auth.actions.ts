@@ -1,4 +1,5 @@
 import { Action } from "@ngrx/store";
+import { OauthDetails } from "../../shared/models/oauth-details";
 
 export enum FitBitAuthActions {
   FitBitOauthSuccess = "[FitBitAuth] FitBit Oauth Success",

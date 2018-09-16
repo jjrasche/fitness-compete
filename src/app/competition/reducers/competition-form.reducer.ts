@@ -36,8 +36,6 @@ export const FORM_ID = 'competitionForm';
 export const initialState = createFormGroupState<FormValue>(FORM_ID, {
   competitors: box([]),
   factors: [
-    // { metric: MetricType.TotalCalories, weight: 2500 },
-    // { metric: MetricType.ActiveMinutes, weight: 100 },
     new Factor(MetricType.TotalCalories, 2500),      
     new Factor(MetricType.ActiveMinutes, 100),      
   ],

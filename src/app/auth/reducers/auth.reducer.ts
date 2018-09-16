@@ -1,5 +1,6 @@
 import { AuthActionsUnion, AuthActions } from "../actions/auth.actions";
 import { User } from "../../shared/models/user";
+import { OauthDetails } from "../../shared/models/oauth-details";
 
 export interface State {
   user: User | null;

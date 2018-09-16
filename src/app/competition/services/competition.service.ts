@@ -11,7 +11,7 @@ import { TimeSpan } from '../models/time-span.model';
 import { Competitor } from '../models/competitor.model';
 import { Goal } from '../models/goal.model';
 import { MetricType } from '../models/metric-type.enum';
-import { GoalType } from '../models/metric-type.enum.1';
+import { GoalType } from '../models/goal-type.enum';
 
 
 @Injectable()

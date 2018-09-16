@@ -1,5 +1,6 @@
 import { Inject, Injectable } from "@angular/core";
 import { FitBitOauthDetails } from "../models/fit-bit-oauth-details";
+import { OauthDetails } from "../../shared/models/oauth-details";
 
 export const FITBITOAUTH = "fitBitOauth";
 export const USER = "user";

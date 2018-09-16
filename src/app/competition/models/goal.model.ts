@@ -1,5 +1,5 @@
 import { MetricType } from "./metric-type.enum";
-import { GoalType } from "./metric-type.enum.1";
+import { GoalType } from "./goal-type.enum";
 
 export class Goal {
     constructor(

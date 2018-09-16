@@ -1,4 +1,5 @@
 import { FitBitAuthActions, FitBitAuthActionsUnion } from "../actions/fit-bit-auth.actions";
+import { OauthDetails } from "../../shared/models/oauth-details";
 
 export interface State {
   fitBitOauth: OauthDetails

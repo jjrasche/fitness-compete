@@ -8,16 +8,17 @@
   </div>
   <div>
     <!-- {{ json.stringify((formState | async).controls.factors.controls[0].controls["metric"]) }} -->
-    <mat-icon class="run-button" (click)="addFactor(0)">+</mat-icon>
+    <mat-icon (click)="addFactor(0)">+</mat-icon>
     <div *ngFor="let factor of (formState | async).controls.factors.controls; let idx = index">
       <div>
+        <mat-icon (click)="removeFactor(idx)">-</mat-icon>
         <mat-form-field>
           <mat-select [ngrxFormControlState]="factor.controls['metric']" placeholder="Metric">
             <mat-option *ngFor="let metric of (metricTypes | enumToArray)" [value]="metric">{{metric}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-slider [max]="2"
-          [min]="-2"
+        <mat-slider [max]="metrics[factor.controls['metric']].upperLimit"
+          [min]="metrics[factor.controls['metric']].lowerLimit"
           [step]=".1"
           [thumbLabel]="true"
           [tickInterval]="true"

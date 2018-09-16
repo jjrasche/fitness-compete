@@ -1,3 +1,4 @@
+import { OauthDetails } from "../../shared/models/oauth-details";
 
 export class FitBitOauthDetails implements OauthDetails{
   constructor(

@@ -1,19 +1,18 @@
 {
-  // "extends": "../tsconfig.json",
   "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2017", "dom"],
     "outDir": "../out-tsc/spec",
-    "module": "commonjs",
-    "types": [
-      "jasmine",
-      "node"
-    ]
+    "target": "es5",
+    "module": "es2015",
+    "types": ["jasmine", "node"],
+    "baseUrl": ".",
+    "rootDir": "../"
   },
-  "files": [
-    "test.ts",
-    "polyfills.ts"
-  ],
-  "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts"
-  ]
+  "files": ["test.ts", "polyfills.ts"],
+  "include": ["**/*.spec.ts"]
 }
